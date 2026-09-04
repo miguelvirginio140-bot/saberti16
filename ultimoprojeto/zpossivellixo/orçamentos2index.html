@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Orçamentos e Itens</title>
+  <link rel="stylesheet" href="1tela.css">
+</head>
+<body>
+  <main class="container"> 
+
+    <!-- SEÇÃO 1: ORÇAMENTO -->
+    <h1>Cadastro de Orçamento</h1>
+
+    <form id="formOrcamento" class="form-cliente">
+      <div class="campo">
+        <label for="orcamentoid">orcamentoid</label>
+        <input type="number" id="orcamentoid" placeholder="Gerado automaticamente" readonly>
+      </div>
+
+      <div class="campo">
+        <label for="clienteid">Cliente</label>
+        <select id="clienteid" required>
+        <option value="">Carregando clientes...</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="dt_orcamento">dt_orcamento</label>
+        <input type="date" id="dt_orcamento" required>
+      </div>
+
+      <div class="campo">
+        <label for="dt_validade_orcamento">dt_validade_orcamento</label>
+        <input type="date" id="dt_validade_orcamento" required>
+      </div>
+
+      <div class="campo">
+        <label for="vl_total_orcamento">vl_total_orcamento</label>
+        <input type="number" step="0.01" id="vl_total_orcamento" placeholder="Digite o valor total" required>
+      </div>
+
+      <div class="acoes">
+        <button type="reset" class="btn-limpar">Limpar</button>
+        <button type="button" id="btnCancelarEdicaoOrcamento" class="btn-cancelar-edicao" style="display:none;">Cancelar edição</button>
+        <button type="submit" id="btnSalvarOrcamento" class="btn-salvar">Salvar</button>
+        <button type="button" id="voltar" class="btn-voltar">Voltar</button>
+      </div>
+    </form>
+
+    <p id="mensagemOrcamento" class="mensagem"></p>
+
+    <hr style="margin: 40px 0;">
+
+    <!-- SEÇÃO 2: ITENS DE ORÇAMENTO -->
+    <h1>Cadastro de Itens Orçamento</h1>
+
+    <form id="formOrcamentoItem" class="form-cliente">
+      <div class="campo">
+        <label for="item_orcamentoid">orcamentoid</label>
+        <select id="item_orcamentoid" required>
+          <option value="">Carregando orçamentos...</option>
+        </select>
+      </div>
+      
+      <div class="campo">
+        <label for="orcamentoitemid">orcamentoitemid</label>
+        <input type="number" id="orcamentoitemid" placeholder="Digite o ID do item" required>
+      </div>
+
+      <div class="campo">
+        <label for="produtoid">produtoid</label>
+        <select id="produtoid" required>
+          <option value="">Carregando produtos...</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="produtodesc">produtodesc</label>
+        <input type="text" id="produtodesc" maxlength="100" placeholder="Digite a descrição do produto" required>
+      </div>
+
+      <div class="campo">
+        <label for="qt_produto">qt_produto</label>
+        <input type="number" step="0.01" id="qt_produto" placeholder="Digite a quantidade" required>
+      </div>
+
+      <div class="campo">
+        <label for="vl_unitario">vl_unitario</label>
+        <input type="number" step="0.01" id="vl_unitario" placeholder="Digite o valor unitário" required>
+      </div>
+
+      <div class="campo">
+        <label for="vl_total">vl_total</label>
+        <input type="number" step="0.01" id="vl_total" placeholder="Calculado automaticamente" readonly>
+      </div>
+
+      <div class="acoes">
+        <button type="reset" class="btn-limpar">Limpar</button>
+        <button type="button" id="btnCancelarEdicaoItem" class="btn-cancelar-edicao" style="display:none;">Cancelar edição</button>
+        <button type="submit" id="btnSalvarItem" class="btn-salvar">Salvar</button>
+      </div>
+    </form>
+
+    <p id="mensagemItem" class="mensagem"></p>
+
+    <!-- TABELA ÚNICA CONSOLIDADA -->
+    <h2>Todos os Orçamentos e Itens Cadastrados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Orçamento ID</th>
+          <th>Cliente</th>
+          <th>Data</th>
+          <th>Validade</th>
+          <th>Vl. Total Orçamento</th>
+          <th>Item ID</th>
+          <th>Produto ID</th>
+          <th>Descrição</th>
+          <th>Qtd</th>
+          <th>Vl. Unitário</th>
+          <th>Vl. Total Item</th>
+          <th>Ações (Item)</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaGeral">
+        <tr><td colspan="12">Carregando dados...</td></tr>
+      </tbody>
+    </table>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="1tela.js"></script>
+</body>
+</html>

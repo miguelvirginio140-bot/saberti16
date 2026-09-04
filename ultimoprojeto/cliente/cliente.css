@@ -1,0 +1,241 @@
+/* Estilo geral da página */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #4e97c2;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Caixa principal centralizada e compacta */
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.container > div {
+  width: 100%;
+}
+
+/* Títulos compactos */
+h1, h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 18px;
+}
+
+/* Formulário organizado em linha reta com colunas inteligentes */
+.form-cliente {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr; /* Distribui os campos lado a lado */
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: end;
+}
+
+/* Campos em formato vertical compacto */
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  margin-bottom: 3px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+}
+
+.campo input,
+.campo select {
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 34px;
+}
+
+/* O campo nome ocupa espaço maior na linha reta */
+.campo.nome {
+  grid-column: span 3; /* Ocupa a largura total da linha superior */
+}
+
+/* Área de botões */
+.acoes {
+  grid-column: span 3;
+  text-align: right;
+  margin-top: 5px;
+}
+
+/* Estilo base dos botões compactos */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  height: 34px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Cores dos botões */
+.btn-salvar {
+  background: #007bff;
+  color: white;
+}
+
+.btn-limpar {
+  background: #ddd;
+  color: #333;
+}
+
+.btn-voltar {
+  background: #e9da11;
+  color: #333;
+}
+
+.btn-editar {
+  background: #ffc107;
+  color: #333;
+  padding: 5px 8px;
+  margin-right: 3px;
+  height: auto;
+}
+
+.btn-excluir {
+  background: #dc3545;
+  color: white;
+  padding: 5px 8px;
+  height: auto;
+}
+
+.btn-cancelar-edicao {
+  background: #6c757d;
+  color: white;
+  display: none;
+}
+
+/* Mensagens */
+.mensagem {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.sucesso {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.erro {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+  
+/* ==================== ESTILO E SCROLL EXCLUSIVO DA TABELA ==================== */
+table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 350px; /* Limite máximo da tabela na tela */
+  border-collapse: collapse;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th {
+  background: #007bff;
+  color: white;
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+tbody {
+  display: block;
+  width: 100%;
+  max-height: 270px; /* Área de rolagem interna exclusiva dos dados */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  color: #333;
+  font-size: 13px;
+}
+
+/* Centralizar coluna de ID */
+th:nth-child(1), td:nth-child(1) {
+  text-align: center;
+  width: 70px;
+}
+
+/* Estilo para campos somente leitura (readonly) ou desativados (com fundo cinza) */
+input:read-only,
+input:disabled,
+select:disabled {
+  background-color: #e9ecef;
+  color: #495057;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Responsividade */
+@media (max-width: 800px) {
+  .form-cliente {
+    grid-template-columns: 1fr 1fr;
+  }
+  .campo.nome, .acoes {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .form-cliente {
+    grid-template-columns: 1fr;
+  }
+  .campo.nome, .acoes {
+    grid-column: span 1;
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+  thead, tbody, tr {
+    display: table;
+  }
+}

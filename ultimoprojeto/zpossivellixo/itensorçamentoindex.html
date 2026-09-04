@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itens de Orçamento</title>
+  <link rel="stylesheet" href="itensorçamento.css">
+</head>
+<body>
+  <main class="container">
+
+    <h1>Cadastro de Itens Orçamento</h1>
+
+    <form id="formOrcamentoItem" class="form-cliente">
+
+      <div class="campo">
+        <label for="orcamentoitemid">orcamentoitemid</label>
+        <input
+          type="number"
+          id="orcamentoitemid"
+          placeholder="Digite o ID do item"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="orcamentoid">orcamentoid</label>
+        <input
+          type="number"
+          id="orcamentoid"
+          placeholder="Digite o ID do orçamento"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="produtoid">produtoid</label>
+        <input
+          type="number"
+          id="produtoid"
+          placeholder="Digite o ID do produto"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="produtodesc">produtodesc</label>
+        <input
+          type="text"
+          id="produtodesc"
+          maxlength="100"
+          placeholder="Digite a descrição do produto"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="qt_produto">qt_produto</label>
+        <input
+          type="number"
+          step="0.01"
+          id="qt_produto"
+          placeholder="Digite a quantidade"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="vl_unitario">vl_unitario</label>
+        <input
+          type="number"
+          step="0.01"
+          id="vl_unitario"
+          placeholder="Digite o valor unitário"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="vl_total">vl_total</label>
+        <input
+          type="number"
+          step="0.01"
+          id="vl_total"
+          placeholder="Calculado automaticamente"
+          readonly
+        >
+      </div>
+
+      <div class="acoes">
+
+        <button type="reset" class="btn-limpar">
+          Limpar
+        </button>
+
+        <button
+          type="button"
+          id="btnCancelarEdicao"
+          class="btn-cancelar-edicao"
+        >
+          Cancelar edição
+        </button>
+
+        <button type="submit" id="btnSalvar" class="btn-salvar">
+          Salvar
+        </button>
+
+        <button type="button" id="voltar" class="btn-voltar">Voltar</button>
+      </div>
+    </form>
+
+    <p id="mensagem" class="mensagem"></p>
+
+    <h2>Itens Orçamento Cadastrados</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>orcamentoid</th>
+          <th>orcamentoitemid</th>
+          <th>produtoid</th>
+          <th>produtodesc</th>
+          <th>qt_produto</th>
+          <th>vl_unitario</th>
+          <th>vl_total</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaOrcamentoItens">
+        <tr>
+          <td colspan="8">Carregando itens...</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="itensorçamento.js"></script>
+
+</body>
+</html>

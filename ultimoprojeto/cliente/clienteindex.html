@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Cliente</title>
+  <link rel="stylesheet" href="cliente.css">
+</head>
+<body>
+  <main class="container">
+
+    <h1>Cadastro de Cliente</h1>
+
+    <form id="formCliente" class="form-cliente">
+
+      <div class="campo">
+        <label for="clienteId">ID Cliente</label>
+        <input
+          type="number"
+          id="clienteId"
+          placeholder="Automático"
+          readonly
+        >
+      </div>
+
+      <div class="campo">
+        <label for="tipoCliente">Tipo de Cliente</label>
+        <select id="tipoCliente" required>
+          <option value="">Selecione</option>
+          <option value="F">Pessoa Física</option>
+          <option value="J">Pessoa Jurídica</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="cpfCnpjCliente">CPF / CNPJ</label>
+        <input
+          type="text"
+          id="cpfCnpjCliente"
+          maxlength="18"
+          placeholder="Digite CPF/CNPJ"
+          required
+        >
+      </div>
+
+      <div class="campo nome">
+        <label for="nomeCliente">Nome do Cliente</label>
+        <input
+          type="text"
+          id="nomeCliente"
+          maxlength="100"
+          placeholder="Digite o nome do cliente"
+          required
+        >
+      </div>
+
+      <div class="acoes">
+        <button type="reset" class="btn-limpar">Limpar</button>
+        <button type="button" id="btnCancelarEdicao" class="btn-cancelar-edicao">Cancelar edição</button>
+        <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
+        <button type="button" id="voltar" class="btn-voltar">Voltar</button>
+      </div>
+    </form>
+
+    <p id="mensagem" class="mensagem"></p>
+
+    <h2>Clientes Cadastrados</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>CPF / CNPJ</th>
+          <th>Nome</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaClientes">
+        <tr>
+          <td colspan="5" style="text-align: center;">Carregando clientes...</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="cliente.js"></script>
+</body>
+</html>
