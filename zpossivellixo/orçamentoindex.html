@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamento</title>
+  <link rel="stylesheet" href="orçamento.css">
+</head>
+<body>
+  <main class="container">
+
+    <h1>Cadastro de Orçamento</h1>
+
+    <form id="formOrcamento" class="form-cliente">
+
+      <div class="campo">
+        <label for="orcamentoid">orcamentoid</label>
+        <input
+          type="number"
+          id="orcamentoid"
+          placeholder="Gerado automaticamente"
+          readonly
+        >
+      </div>
+
+      <div class="campo">
+        <label for="clienteid">clienteid</label>
+        <input
+          type="number"
+          id="clienteid"
+          placeholder="Digite o ID do cliente"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="dt_orcamento">dt_orcamento</label>
+        <input
+          type="date"
+          id="dt_orcamento"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="dt_validade_orcamento">dt_validade_orcamento</label>
+        <input
+          type="date"
+          id="dt_validade_orcamento"
+          required
+        >
+      </div>
+
+      <div class="campo">
+        <label for="vl_total_orcamento">vl_total_orcamento</label>
+        <input
+          type="number"
+          step="0.01"
+          id="vl_total_orcamento"
+          placeholder="Digite o valor total"
+          required
+        >
+      </div>
+
+      <div class="acoes">
+
+        <button type="reset" class="btn-limpar">
+          Limpar
+        </button>
+
+        <button
+          type="button"
+          id="btnCancelarEdicao"
+          class="btn-cancelar-edicao"
+        >
+          Cancelar edição
+        </button>
+
+        <button type="submit" id="btnSalvar" class="btn-salvar">
+          Salvar
+        </button>
+
+        <button type="button" id="voltar" class="btn-voltar">Voltar</button>
+      </div>
+    </form>
+
+    <p id="mensagem" class="mensagem"></p>
+
+    <h2>Orçamentos Cadastrados</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>orcamentoid</th>
+          <th>clienteid</th>
+          <th>dt_orcamento</th>
+          <th>dt_validade_orcamento</th>
+          <th>vl_total_orcamento</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaOrcamentos">
+        <tr>
+          <td colspan="6">Carregando orçamentos...</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="orçamento.js"></script>
+
+</body>
+</html>
