@@ -1,94 +1,326 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerenciamento de Orçamentos</title>
-  <link rel="stylesheet" href="teste2.css">
 
-  <!-- Supabase CDN -->
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Gerenciamento de Orçamentos</title>
+
+  <link
+    rel="stylesheet"
+    href="orçamentos.css"
+  >
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
+
 
 <body>
 
   <div class="container">
 
-    <!-- ==================== TELA 1: LISTAGEM DE ORÇAMENTOS ==================== -->
+
+    <!-- =====================================================
+         TELA 1 - LISTA DE ORÇAMENTOS
+         ===================================================== -->
+
     <div id="telaTabela">
 
       <h2>Lista de Orçamentos</h2>
 
-      <div style="margin-bottom: 15px; display: flex; gap: 10px;">
-        <button type="button" id="btnNovoOrcamento" class="btn-salvar">
+
+      <!-- ==================== BOTÕES ==================== -->
+
+      <div class="barra-botoes">
+
+        <button
+          type="button"
+          id="btnNovoOrcamento"
+          class="btn-salvar"
+        >
           Novo Orçamento
         </button>
 
-        <button type="button" id="voltar" class="btn-voltar">
+
+        <button
+          type="button"
+          id="voltar"
+          class="btn-voltar"
+        >
           Voltar ao Menu
         </button>
+
       </div>
 
-      <div id="mensagemTabela" class="mensagem"></div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID Orçamento</th>
-            <th>Qtd Itens</th>
-            <th>Cliente ID</th>
-            <th>Data Orçamento</th>
-            <th>Data Validade</th>
-            <th>Valor Total</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
+      <!-- =================================================
+           BARRA DE PESQUISA
+           ================================================= -->
 
-        <tbody id="tabelaGeral">
-          <!-- Preenchido via JavaScript -->
-        </tbody>
-      </table>
+      <div class="barra-pesquisa">
+
+        <!-- CAMPO DE PESQUISA -->
+
+        <div class="campo-pesquisa">
+
+          <label for="pesquisaOrcamento">
+            Pesquisar Orçamento
+          </label>
+
+
+          <div class="input-pesquisa-wrapper">
+
+            <input
+              type="text"
+              id="pesquisaOrcamento"
+              placeholder="Digite para pesquisar..."
+              autocomplete="off"
+            >
+
+
+            <button
+              type="button"
+              id="btnLimparPesquisa"
+              class="btn-limpar-pesquisa"
+              title="Limpar pesquisa"
+            >
+              ×
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- FILTRO -->
+
+        <div class="campo-filtro">
+
+          <label for="filtroPesquisa">
+            Filtrar por
+          </label>
+
+
+          <select id="filtroPesquisa">
+
+            <option value="">
+              Todos os campos
+            </option>
+
+
+            <option value="orcamentoid">
+              Código Orçamento
+            </option>
+
+
+            <option value="clienteid">
+              Código Cliente
+            </option>
+
+
+            <option value="dt_orcamento">
+              Data Orçamento
+            </option>
+
+
+            <option value="dt_validade_orcamento">
+              Data Validade
+            </option>
+
+
+            <option value="vl_total_orcamento">
+              Valor Total
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================== MENSAGEM ==================== -->
+
+      <div
+        id="mensagemTabela"
+        class="mensagem"
+      ></div>
+
+
+      <!-- ==================== TABELA PRINCIPAL ==================== -->
+
+      <div class="tabela-container">
+
+        <table class="tabela-principal">
+
+          <colgroup>
+
+            <col class="col-id">
+
+            <col class="col-qtd">
+
+            <col class="col-cliente">
+
+            <col class="col-data">
+
+            <col class="col-data">
+
+            <col class="col-valor">
+
+            <col class="col-acoes">
+
+          </colgroup>
+
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Código Orçamento
+              </th>
+
+              <th>
+                Qtd Itens
+              </th>
+
+              <th>
+                Código Cliente
+              </th>
+
+              <th>
+                Data Orçamento
+              </th>
+
+              <th>
+                Data Validade
+              </th>
+
+              <th>
+                Valor Total
+              </th>
+
+              <th>
+                Ações
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="tabelaGeral">
+
+          </tbody>
+
+        </table>
+
+      </div>
 
     </div>
 
 
-    <!-- ==================== TELA 2: CADASTRO / EDIÇÃO ==================== -->
-    <div id="telaCadastro" style="display: none;">
+
+    <!-- =====================================================
+         TELA 2 - CADASTRO
+         ===================================================== -->
+
+    <div
+      id="telaCadastro"
+      style="display: none;"
+    >
 
       <h2>Cadastro de Orçamento</h2>
 
-      <div id="mensagemGeral" class="mensagem"></div>
+
+      <div
+        id="mensagemGeral"
+        class="mensagem"
+      ></div>
+
 
       <form id="formOrcamentoGeral">
 
+
         <!-- ==================== DADOS DO ORÇAMENTO ==================== -->
+
         <div class="form-cliente">
 
-          <div class="campo">
-            <label for="orcamentoid">ID Orçamento</label>
-            <input type="text" id="orcamentoid" readonly />
-          </div>
 
           <div class="campo">
-            <label for="clienteid">Cliente</label>
-            <select id="clienteid" required>
-              <option value="">Carregando clientes...</option>
+
+            <label for="orcamentoid">
+              Código Orçamento
+            </label>
+
+            <input
+              type="text"
+              id="orcamentoid"
+              readonly
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="clienteid">
+              Cliente
+            </label>
+
+            <select
+              id="clienteid"
+              required
+            >
+
+              <option value="">
+                Carregando clientes...
+              </option>
+
             </select>
+
           </div>
 
-          <div class="campo">
-            <label for="dt_orcamento">Data do Orçamento</label>
-            <input type="date" id="dt_orcamento" required />
-          </div>
 
           <div class="campo">
+
+            <label for="dt_orcamento">
+              Data do Orçamento
+            </label>
+
+            <input
+              type="date"
+              id="dt_orcamento"
+              required
+            >
+
+          </div>
+
+
+          <div class="campo">
+
             <label for="dt_validade_orcamento">
               Data de Validade
             </label>
-            <input type="date" id="dt_validade_orcamento" required />
+
+            <input
+              type="date"
+              id="dt_validade_orcamento"
+              required
+            >
+
           </div>
 
+
           <div class="campo nome">
+
             <label for="vl_total_orcamento">
               Valor Total Geral (R$)
             </label>
@@ -98,7 +330,8 @@
               id="vl_total_orcamento"
               readonly
               value="0.00"
-            />
+            >
+
           </div>
 
         </div>
@@ -107,38 +340,66 @@
         <hr>
 
 
-        <!-- ==================== PRODUTOS / ITENS ==================== -->
-        <h3>Adicionar Produtos / Itens</h3>
+        <!-- ==================== PRODUTOS ==================== -->
+
+        <h3>
+          Adicionar Produtos / Itens
+        </h3>
+
 
         <div class="form-cliente">
 
+
           <div class="campo">
-            <label for="orcamentoitemid">ID do Item</label>
-            <input type="text" id="orcamentoitemid" readonly />
+
+            <label for="orcamentoitemid">
+              Código do Item
+            </label>
+
+            <input
+              type="text"
+              id="orcamentoitemid"
+              readonly
+            >
+
           </div>
 
+
           <div class="campo">
-            <label for="produtoid">Produto</label>
+
+            <label for="produtoid">
+              Produto
+            </label>
 
             <select id="produtoid">
+
               <option value="">
                 Selecione um produto...
               </option>
+
             </select>
+
           </div>
 
+
           <div class="campo">
-            <label for="qt_produto">Quantidade</label>
+
+            <label for="qt_produto">
+              Quantidade
+            </label>
 
             <input
               type="number"
               id="qt_produto"
               step="any"
               min="0.01"
-            />
+            >
+
           </div>
 
+
           <div class="campo">
+
             <label for="vl_unitario">
               Valor Unitário (R$)
             </label>
@@ -146,10 +407,13 @@
             <input
               type="text"
               id="vl_unitario"
-            />
+            >
+
           </div>
 
+
           <div class="campo nome">
+
             <label for="vl_total">
               Valor Total do Item (R$)
             </label>
@@ -158,13 +422,11 @@
               type="text"
               id="vl_total"
               readonly
-            />
+            >
+
           </div>
 
-          <!--
-            AGORA O BOTÃO SALVAR ORÇAMENTO FICA
-            NA POSIÇÃO ONDE ESTAVA O ADICIONAR ITEM
-          -->
+
           <div class="acoes botao-salvar-topo">
 
             <button
@@ -180,38 +442,89 @@
 
 
         <!-- ==================== TABELA DE ITENS ==================== -->
-        <table class="tabela-carrinho">
 
-          <thead>
-            <tr>
-              <th>ID Item</th>
-              <th>ID Prod</th>
-              <th>Produto</th>
-              <th>Qtd</th>
-              <th>Vlr. Unit</th>
-              <th>Total</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
+        <div class="tabela-container">
 
-          <tbody id="corpoTabelaCarrinho">
+          <table class="tabela-carrinho">
 
-            <tr>
-              <td colspan="7" style="text-align: center;">
-                Nenhum produto adicionado ainda.
-              </td>
-            </tr>
+            <colgroup>
 
-          </tbody>
+              <col class="item-id">
 
-        </table>
+              <col class="item-produto-id">
+
+              <col class="item-produto">
+
+              <col class="item-qtd">
+
+              <col class="item-unitario">
+
+              <col class="item-total">
+
+              <col class="item-acoes">
+
+            </colgroup>
+
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Código Item
+                </th>
+
+                <th>
+                  Código Prod
+                </th>
+
+                <th>
+                  Produto
+                </th>
+
+                <th>
+                  Qtd
+                </th>
+
+                <th>
+                  Vlr. Unit
+                </th>
+
+                <th>
+                  Total
+                </th>
+
+                <th>
+                  Ações
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="corpoTabelaCarrinho">
+
+              <tr>
+
+                <td
+                  colspan="7"
+                  class="sem-itens"
+                >
+                  Nenhum produto adicionado ainda.
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
 
 
         <!-- ==================== BOTÕES FINAIS ==================== -->
-        <!--
-          AGORA O ADICIONAR ITEM FICA NA PARTE INFERIOR,
-          ONDE ESTAVA O SALVAR ORÇAMENTO
-        -->
+
         <div class="acoes botoes-finais">
 
           <button
@@ -222,6 +535,7 @@
             Limpar
           </button>
 
+
           <button
             type="button"
             id="btnVoltarTela1"
@@ -229,6 +543,7 @@
           >
             Voltar
           </button>
+
 
           <button
             type="button"
@@ -247,8 +562,12 @@
   </div>
 
 
-  <!-- Script JavaScript -->
-  <script src="teste2.js"></script>
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script src="orçamentos.js"></script>
 
 </body>
+
 </html>

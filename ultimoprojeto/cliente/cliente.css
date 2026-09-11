@@ -1,241 +1,715 @@
-/* Estilo geral da página */
+/* =========================================================
+   ESTILO GERAL DA PÁGINA
+   ========================================================= */
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #4e97c2;
+
+  background: #f4f4f4;
+
   padding: 20px;
+
   margin: 0;
 }
 
-/* Caixa principal centralizada e compacta */
+
+/* =========================================================
+   CAIXA PRINCIPAL
+   ========================================================= */
+
 .container {
   max-width: 1000px;
+
   margin: 20px auto;
+
   background: white;
+
   padding: 20px 25px;
+
   border-radius: 8px;
+
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
   display: flex;
+
   flex-direction: column;
+
   align-items: stretch;
 }
+
 
 .container > div {
   width: 100%;
 }
 
-/* Títulos compactos */
-h1, h2 {
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
+h1,
+h2 {
   margin-top: 0;
+
   margin-bottom: 10px;
+
   color: #333;
+
   font-size: 18px;
 }
 
-/* Formulário organizado em linha reta com colunas inteligentes */
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
 .form-cliente {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.5fr; /* Distribui os campos lado a lado */
+
+  grid-template-columns: 1fr 1fr 1.5fr;
+
   gap: 10px;
+
   margin-bottom: 10px;
+
   align-items: end;
 }
 
-/* Campos em formato vertical compacto */
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
 .campo {
   display: flex;
+
   flex-direction: column;
 }
 
+
 .campo label {
   margin-bottom: 3px;
+
   font-weight: bold;
+
   font-size: 12px;
+
   color: #555;
+
   white-space: nowrap;
 }
+
 
 .campo input,
 .campo select {
   padding: 7px 10px;
+
   border: 1px solid #ccc;
+
   border-radius: 4px;
+
   font-size: 13px;
+
   width: 100%;
+
   box-sizing: border-box;
+
   height: 34px;
 }
 
-/* O campo nome ocupa espaço maior na linha reta */
+
+/* =========================================================
+   CAMPO NOME
+   ========================================================= */
+
 .campo.nome {
-  grid-column: span 3; /* Ocupa a largura total da linha superior */
+  grid-column: span 3;
 }
 
-/* Área de botões */
+
+/* =========================================================
+   ÁREA DOS BOTÕES
+   ========================================================= */
+
 .acoes {
   grid-column: span 3;
+
   text-align: right;
+
   margin-top: 5px;
 }
 
-/* Estilo base dos botões compactos */
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
 button {
   padding: 8px 14px;
+
   border: none;
+
   border-radius: 4px;
+
   cursor: pointer;
+
   font-weight: bold;
+
   font-size: 13px;
+
   height: 34px;
 }
+
 
 button:hover {
   opacity: 0.9;
 }
 
-/* Cores dos botões */
+
+/* =========================================================
+   BOTÃO SALVAR
+   ========================================================= */
+
 .btn-salvar {
   background: #007bff;
+
   color: white;
 }
+
+
+/* =========================================================
+   BOTÃO LIMPAR
+   ========================================================= */
 
 .btn-limpar {
   background: #ddd;
+
   color: #333;
 }
+
+
+/* =========================================================
+   BOTÃO VOLTAR
+   ========================================================= */
 
 .btn-voltar {
   background: #e9da11;
+
   color: #333;
 }
+
+
+/* =========================================================
+   BOTÃO EDITAR
+   ========================================================= */
 
 .btn-editar {
   background: #ffc107;
+
   color: #333;
+
   padding: 5px 8px;
-  margin-right: 3px;
+
+  margin-right: 5px;
+
   height: auto;
 }
+
+
+/* =========================================================
+   BOTÃO EXCLUIR
+   ========================================================= */
 
 .btn-excluir {
   background: #dc3545;
+
   color: white;
+
   padding: 5px 8px;
+
   height: auto;
 }
 
+
+/* =========================================================
+   BOTÃO CANCELAR EDIÇÃO
+   ========================================================= */
+
 .btn-cancelar-edicao {
   background: #6c757d;
+
   color: white;
+
   display: none;
 }
 
-/* Mensagens */
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
+
 .mensagem {
   font-weight: bold;
+
   margin-bottom: 10px;
+
   padding: 8px;
+
   border-radius: 4px;
+
   font-size: 13px;
 }
+
 
 .sucesso {
   color: #155724;
+
   background-color: #d4edda;
+
   border: 1px solid #c3e6cb;
 }
 
+
 .erro {
   color: #721c24;
+
   background-color: #f8d7da;
+
   border: 1px solid #f5c6cb;
 }
-  
-/* ==================== ESTILO E SCROLL EXCLUSIVO DA TABELA ==================== */
+
+
+/* =========================================================
+   ÁREA DE PESQUISA DE CLIENTES
+   ========================================================= */
+
+.filtro-clientes {
+  width: 100%;
+
+  background: #f8f9fa;
+
+  border: 1px solid #d6d6d6;
+
+  border-radius: 6px;
+
+  padding: 14px;
+
+  margin-bottom: 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LABEL "PESQUISAR CLIENTE"
+   ========================================================= */
+
+.filtro-clientes > label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-weight: bold;
+
+  font-size: 13px;
+
+  color: #555;
+}
+
+
+/* =========================================================
+   CAMPO DE PESQUISA
+   ========================================================= */
+
+.campo-pesquisa {
+  position: relative;
+
+  width: 100%;
+}
+
+
+.campo-pesquisa input {
+  width: 100%;
+
+  height: 44px;
+
+  padding: 8px 42px 8px 12px;
+
+  border: 1px solid #bbb;
+
+  border-radius: 4px;
+
+  box-sizing: border-box;
+
+  font-size: 14px;
+
+  background: white;
+}
+
+
+.campo-pesquisa input::placeholder {
+  color: #777;
+}
+
+
+.campo-pesquisa input:focus {
+  outline: none;
+
+  border-color: #80bdff;
+
+  box-shadow:
+    0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+
+/* =========================================================
+   BOTÃO "X" DA PESQUISA
+   ========================================================= */
+
+.btn-limpar-pesquisa {
+  position: absolute;
+
+  right: 5px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 32px;
+
+  height: 32px;
+
+  padding: 0;
+
+  background: transparent;
+
+  color: #777;
+
+  font-size: 24px;
+
+  font-weight: bold;
+
+  line-height: 30px;
+
+  border-radius: 50%;
+}
+
+
+.btn-limpar-pesquisa:hover {
+  background: #eee;
+
+  color: #555;
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FILTRAR POR
+   ========================================================= */
+
+.filtro-por {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 3px;
+}
+
+
+.filtro-por label {
+  font-size: 16px;
+
+  color: #222;
+}
+
+
+.filtro-por select {
+  height: 25px;
+
+  padding: 2px 5px;
+
+  border: 1px solid #888;
+
+  background: white;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
 table {
   display: flex;
+
   flex-direction: column;
+
   width: 100%;
-  max-height: 350px; /* Limite máximo da tabela na tela */
-  border-collapse: collapse;
+
+  max-height: 350px;
+
   margin-top: 5px;
+
   margin-bottom: 10px;
+
   background-color: #fff;
+
+  border: 1px solid #010101;
+
+  border-collapse: collapse;
+
+  border-spacing: 0;
+
+  box-sizing: border-box;
 }
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
 
 thead {
   display: table;
+
   width: 100%;
+
   table-layout: fixed;
+
+  flex-shrink: 0;
 }
+
 
 th {
   background: #007bff;
+
   color: white;
+
   text-align: left;
+
   padding: 8px 10px;
+
   font-size: 13px;
+
+  border: 1px solid #010101;
+
+  box-sizing: border-box;
 }
+
+
+/* =========================================================
+   CORPO DA TABELA
+   ========================================================= */
 
 tbody {
   display: block;
+
   width: 100%;
-  max-height: 270px; /* Área de rolagem interna exclusiva dos dados */
+
+  max-height: 270px;
+
   overflow-y: auto;
+
   overflow-x: hidden;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #010101;
 }
 
-tr {
+
+/* =========================================================
+   LINHAS
+   ========================================================= */
+
+tbody tr {
   display: table;
+
   width: 100%;
+
   table-layout: fixed;
 }
 
+
+/* =========================================================
+   CÉLULAS
+   ========================================================= */
+
 td {
   padding: 6px 10px;
-  border: 1px solid #ddd;
-  text-align: left;
+
   color: #333;
+
   font-size: 13px;
+
+  border: 1px solid #010101;
+
+  box-sizing: border-box;
 }
 
-/* Centralizar coluna de ID */
-th:nth-child(1), td:nth-child(1) {
+
+/* =========================================================
+   BORDA DA ÚLTIMA LINHA
+   ========================================================= */
+
+tbody tr:last-child td {
+  border-bottom: 1px solid #010101 !important;
+}
+
+
+/* =========================================================
+   BORDA DA COLUNA AÇÕES
+   ========================================================= */
+
+tbody tr:last-child td:last-child {
+  border-right: 1px solid #010101 !important;
+
+  border-bottom: 1px solid #010101 !important;
+}
+
+
+/* =========================================================
+   BORDA ESQUERDA DA ÚLTIMA LINHA
+   ========================================================= */
+
+tbody tr:last-child td:first-child {
+  border-left: 1px solid #010101 !important;
+
+  border-bottom: 1px solid #010101 !important;
+}
+
+
+/* =========================================================
+   BORDA DIREITA DA COLUNA AÇÕES
+   ========================================================= */
+
+tbody td:last-child {
+  border-right: 1px solid #010101 !important;
+}
+
+
+/* =========================================================
+   CENTRALIZAR COLUNA CÓDIGO
+   ========================================================= */
+
+th:nth-child(1),
+td:nth-child(1) {
   text-align: center;
+
   width: 70px;
 }
 
-/* Estilo para campos somente leitura (readonly) ou desativados (com fundo cinza) */
+
+/* =========================================================
+   CENTRALIZAR COLUNA AÇÕES
+   ========================================================= */
+
+th:nth-child(5),
+td:nth-child(5) {
+  text-align: center;
+}
+
+
+/* =========================================================
+   CAMPOS SOMENTE LEITURA
+   ========================================================= */
+
 input:read-only,
 input:disabled,
 select:disabled {
   background-color: #e9ecef;
+
   color: #495057;
+
   cursor: not-allowed;
+
   opacity: 1;
 }
 
-/* Responsividade */
+
+/* =========================================================
+   RESPONSIVIDADE - TABLET
+   ========================================================= */
+
 @media (max-width: 800px) {
+
   .form-cliente {
     grid-template-columns: 1fr 1fr;
   }
-  .campo.nome, .acoes {
+
+
+  .campo.nome,
+  .acoes {
     grid-column: span 2;
   }
+
 }
 
+
+/* =========================================================
+   RESPONSIVIDADE - CELULAR
+   ========================================================= */
+
 @media (max-width: 500px) {
+
+  body {
+    padding: 10px;
+  }
+
+
+  .container {
+    margin: 10px auto;
+
+    padding: 15px;
+  }
+
+
   .form-cliente {
     grid-template-columns: 1fr;
   }
-  .campo.nome, .acoes {
+
+
+  .campo.nome,
+  .acoes {
     grid-column: span 1;
   }
+
+
+  .acoes {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    justify-content: flex-end;
+  }
+
+
+  .filtro-por {
+    flex-wrap: wrap;
+  }
+
+
+  .filtro-por select {
+    max-width: 100%;
+  }
+
+
   table {
     display: block;
+
     overflow-x: auto;
   }
-  thead, tbody, tr {
+
+
+  thead,
+  tbody,
+  tr {
     display: table;
   }
+
 }

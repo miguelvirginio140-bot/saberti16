@@ -1,39 +1,88 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cadastro de Cliente</title>
+
   <link rel="stylesheet" href="cliente.css">
 </head>
+
 <body>
+
   <main class="container">
+
+    <!-- =====================================================
+         TÍTULO
+         ===================================================== -->
 
     <h1>Cadastro de Cliente</h1>
 
+
+    <!-- =====================================================
+         FORMULÁRIO DE CLIENTE
+         ===================================================== -->
+
     <form id="formCliente" class="form-cliente">
 
+      <!-- CÓDIGO -->
+
       <div class="campo">
-        <label for="clienteId">ID Cliente</label>
+
+        <label for="clienteId">
+          Código
+        </label>
+
         <input
           type="number"
           id="clienteId"
           placeholder="Automático"
           readonly
         >
+
       </div>
 
+
+      <!-- TIPO DE CLIENTE -->
+
       <div class="campo">
-        <label for="tipoCliente">Tipo de Cliente</label>
-        <select id="tipoCliente" required>
-          <option value="">Selecione</option>
-          <option value="F">Pessoa Física</option>
-          <option value="J">Pessoa Jurídica</option>
+
+        <label for="tipoCliente">
+          Tipo de Cliente
+        </label>
+
+        <select
+          id="tipoCliente"
+          required
+        >
+
+          <option value="">
+            Selecione
+          </option>
+
+          <option value="F">
+            Pessoa Física
+          </option>
+
+          <option value="J">
+            Pessoa Jurídica
+          </option>
+
         </select>
+
       </div>
 
+
+      <!-- CPF / CNPJ -->
+
       <div class="campo">
-        <label for="cpfCnpjCliente">CPF / CNPJ</label>
+
+        <label for="cpfCnpjCliente">
+          CPF / CNPJ
+        </label>
+
         <input
           type="text"
           id="cpfCnpjCliente"
@@ -41,10 +90,18 @@
           placeholder="Digite CPF/CNPJ"
           required
         >
+
       </div>
 
+
+      <!-- NOME -->
+
       <div class="campo nome">
-        <label for="nomeCliente">Nome do Cliente</label>
+
+        <label for="nomeCliente">
+          Nome do Cliente
+        </label>
+
         <input
           type="text"
           id="nomeCliente"
@@ -52,40 +109,216 @@
           placeholder="Digite o nome do cliente"
           required
         >
+
       </div>
+
+
+      <!-- =====================================================
+           BOTÕES
+           ===================================================== -->
 
       <div class="acoes">
-        <button type="reset" class="btn-limpar">Limpar</button>
-        <button type="button" id="btnCancelarEdicao" class="btn-cancelar-edicao">Cancelar edição</button>
-        <button type="submit" id="btnSalvar" class="btn-salvar">Salvar</button>
-        <button type="button" id="voltar" class="btn-voltar">Voltar</button>
+
+        <button
+          type="reset"
+          class="btn-limpar"
+        >
+          Limpar
+        </button>
+
+
+        <button
+          type="button"
+          id="btnCancelarEdicao"
+          class="btn-cancelar-edicao"
+        >
+          Cancelar edição
+        </button>
+
+
+        <button
+          type="submit"
+          id="btnSalvar"
+          class="btn-salvar"
+        >
+          Salvar
+        </button>
+
+
+        <button
+          type="button"
+          id="voltar"
+          class="btn-voltar"
+        >
+          Voltar
+        </button>
+
       </div>
+
     </form>
 
-    <p id="mensagem" class="mensagem"></p>
 
-    <h2>Clientes Cadastrados</h2>
+    <!-- =====================================================
+         MENSAGEM
+         ===================================================== -->
+
+    <p
+      id="mensagem"
+      class="mensagem"
+    ></p>
+
+
+    <!-- =====================================================
+         CLIENTES CADASTRADOS
+         ===================================================== -->
+
+    <h2>
+      Clientes Cadastrados
+    </h2>
+
+
+    <!-- =====================================================
+         PESQUISA DE CLIENTES
+         ===================================================== -->
+
+    <div class="filtro-clientes">
+
+      <!-- LABEL PESQUISAR -->
+
+      <label for="pesquisaCliente">
+        Pesquisar Cliente
+      </label>
+
+
+      <!-- CAMPO DE PESQUISA -->
+
+      <div class="campo-pesquisa">
+
+        <input
+          type="text"
+          id="pesquisaCliente"
+          placeholder="Digite para pesquisar..."
+        >
+
+
+        <button
+          type="button"
+          id="limparPesquisaCliente"
+          class="btn-limpar-pesquisa"
+          aria-label="Limpar pesquisa"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- FILTRAR POR -->
+
+      <div class="filtro-por">
+
+        <label for="filtroCliente">
+          Filtrar por
+        </label>
+
+
+        <select id="filtroCliente">
+
+          <option value="todos">
+            Todos os campos
+          </option>
+
+          <option value="clienteid">
+            Código
+          </option>
+
+          <option value="tipo_cliente">
+            Tipo
+          </option>
+
+          <option value="cpf_cnpj_cliente">
+            CPF / CNPJ
+          </option>
+
+          <option value="nome_cliente">
+            Nome
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TABELA DE CLIENTES
+         ===================================================== -->
 
     <table>
+
       <thead>
+
         <tr>
-          <th>ID</th>
-          <th>Tipo</th>
-          <th>CPF / CNPJ</th>
-          <th>Nome</th>
-          <th>Ações</th>
+
+          <th>
+            Código
+          </th>
+
+          <th>
+            Tipo
+          </th>
+
+          <th>
+            CPF / CNPJ
+          </th>
+
+          <th>
+            Nome
+          </th>
+
+          <th>
+            Ações
+          </th>
+
         </tr>
+
       </thead>
 
+
       <tbody id="tabelaClientes">
+
         <tr>
-          <td colspan="5" style="text-align: center;">Carregando clientes...</td>
+
+          <td
+            colspan="5"
+            style="text-align: center;"
+          >
+            Carregando clientes...
+          </td>
+
         </tr>
+
       </tbody>
+
     </table>
+
   </main>
 
+
+  <!-- =====================================================
+       SUPABASE
+       ===================================================== -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <!-- =====================================================
+       JAVASCRIPT DO CLIENTE
+       ===================================================== -->
+
   <script src="cliente.js"></script>
+
 </body>
+
 </html>
